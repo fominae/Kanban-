@@ -15,11 +15,11 @@
         <h2>Запланированные задачи</h2>
         <form class="form" @submit.prevent="addCard">
             <label for="card-title">Заголовок:</label>
-            <input id="card-title" type="text" v-model="newCardTitle">
+            <input id="card-title" type="text" v-model="newCardTitle" required>
             <label for="card-description">Описание:</label>
-            <input id="card-description" type="text" v-model="newCardDescription">
+            <input id="card-description" type="text" v-model="newCardDescription" required>
             <label for="card-deadline">Дэдлайн:</label>
-            <input id="card-deadline" type="date" v-model="newCardDeadline">
+            <input id="card-deadline" type="date" v-model="newCardDeadline" required>
             <button class="form-botton" type="submit">Добавить карточку</button>
         </form>
         <div v-for="card in column1" :key="card.id" class="card">
@@ -29,9 +29,9 @@
             <p>Дата создания: {{ card.createdDate }}</p>
             <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }} </p>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
-                <input type="text" v-model="newTitle" placeholder="Новый заголовок">
-                <input type="text" v-model="newDescription" placeholder="Новое описание">
-                <input type="date" v-model="newDeadline" placeholder="Новый дедлайн">
+                <input type="text" v-model="newTitle" placeholder="Новый заголовок" required>
+                <input type="text" v-model="newDescription" placeholder="Новое описание" required>
+                <input type="date" v-model="newDeadline" placeholder="Новый дедлайн" required>
                 <button type="submit">Редактировать карточку</button>
             </form>
             <button @click="deleteCard(card)">Удалить карточку</button>
@@ -49,9 +49,9 @@
                 <p>Причина возврата: {{ card.reasonForReturn }}</p>
             </div>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
-                <input type="text" v-model="newTitle" placeholder="Новый заголовок">
-                <input type="text" v-model="newDescription" placeholder="Новое описание">
-                <input type="date" v-model="newDeadline" placeholder="Новый дедлайн">
+                <input type="text" v-model="newTitle" placeholder="Новый заголовок" required>
+                <input type="text" v-model="newDescription" placeholder="Новое описание" required>
+                <input type="date" v-model="newDeadline" placeholder="Новый дедлайн" required>
                 <button type="submit">Редактировать карточку</button>
             </form>
             <button @click="moveCardToThird(card)">Переместить в тестирование</button>
@@ -65,9 +65,9 @@
             <p>Дэдлайн: {{ card.deadline }}</p>
             <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }}</p>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
-                <input type="text" v-model="newTitle" placeholder="Новый заголовок">
-                <input type="text" v-model="newDescription" placeholder="Новое описание">
-                <input type="date" v-model="newDeadline" placeholder="Новый дедлайн">
+                <input type="text" v-model="newTitle" placeholder="Новый заголовок" required>
+                <input type="text" v-model="newDescription" placeholder="Новое описание" required>
+                <input type="date" v-model="newDeadline" placeholder="Новый дедлайн" required>
                 <button type="submit">Редактировать карточку</button>
             </form>
             <input type="text" v-model="reasonForReturn" placeholder="Причина возврата">
