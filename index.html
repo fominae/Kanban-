@@ -27,7 +27,7 @@
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
             <p>Дата создания: {{ card.createdDate }}</p>
-            <p>Последнее редактирование: {{ card.lastEdited }} </p>
+            <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }} </p>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
                 <input type="text" v-model="newTitle" placeholder="Новый заголовок">
                 <input type="text" v-model="newDescription" placeholder="Новое описание">
@@ -44,7 +44,7 @@
             <h3>{{ card.title }}</h3>
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
-            <p>Последнее редактирование: {{ card.lastEdited }}</p>
+            <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }}</p>
             <div v-if="card.reasonForReturn">
                 <p>Причина возврата: {{ card.reasonForReturn }}</p>
             </div>
@@ -63,7 +63,7 @@
             <h3>{{ card.title }}</h3>
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
-            <p>Последнее редактирование: {{ card.lastEdited }}</p>
+            <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }}</p>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
                 <input type="text" v-model="newTitle" placeholder="Новый заголовок">
                 <input type="text" v-model="newDescription" placeholder="Новое описание">
@@ -82,7 +82,6 @@
             <h3>{{ card.title }}</h3>
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
-            <p>Последнее редактирование: {{ card.lastEdited }}</p>
             <p v-if="card.isOverdue">Просрочено</p>
             <p v-else>Выполнено в срок</p>
         </div>
