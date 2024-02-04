@@ -27,5 +27,8 @@ new Vue({
                 this.newCardDeadline = '';
             }
         },
+        deleteCard(card) {
+            this.column1.splice(this.column1.indexOf(card), 1);
+        }
     }
 })

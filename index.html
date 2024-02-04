@@ -29,6 +29,7 @@
             <p>Дэдлайн: {{ card.deadline }}</p>
             <p>Дата создания: {{ card.createdDate }}</p>
             <p>Последнее редактирование: </p>
+            <button @click="deleteCard(card)">Удалить карточку</button>
         </div>
     </div>
     <div class="column">
