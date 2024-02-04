@@ -29,6 +29,12 @@ new Vue({
         },
         deleteCard(card) {
             this.column1.splice(this.column1.indexOf(card), 1);
+        },
+        editCard(card, newTitle, newDescription, newDeadline) {
+            card.title = newTitle;
+            card.description = newDescription;
+            card.deadline = newDeadline;
+            card.lastEdited = new Date().toLocaleString();
         }
     }
 })
