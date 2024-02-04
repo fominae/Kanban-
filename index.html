@@ -10,7 +10,6 @@
 </head>
 
 <body>
-<body>
 <div id="app">
     <div class="column">
         <h2>Запланированные задачи</h2>
@@ -43,7 +42,7 @@
         <h2>Задачи в работе</h2>
         <div v-for="card in column2" :key="card.id" class="card">
             <h3>{{ card.title }}</h3>
-            <p>{{ card.description }}</p>
+            <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
             <p>Последнее редактирование: {{ card.lastEdited }}</p>
             <div v-if="card.reasonForReturn">
@@ -59,29 +58,35 @@
         </div>
     </div>
     <div class="column">
-        <div class="column">
-            <h2>Тестирование</h2>
-            <div v-for="card in column3" :key="card.id" class="card">
-                <h3>{{ card.title }}</h3>
-                <p>{{ card.description }}</p>
-                <p>Дэдлайн: {{ card.deadline }}</p>
-                <p>Последнее редактирование: {{ card.lastEdited }}</p>
-                <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
-                    <input type="text" v-model="newTitle" placeholder="Новый заголовок">
-                    <input type="text" v-model="newDescription" placeholder="Новое описание">
-                    <input type="date" v-model="newDeadline" placeholder="Новый дедлайн">
-                    <button type="submit">Редактировать карточку</button>
-                </form>
-                <input type="text" v-model="reasonForReturn" placeholder="Причина возврата">
-                <button @click="moveCardToFourthOrReturn(card, reasonForReturn)">Вернуть</button>
-            </div>
+        <h2>Тестирование</h2>
+        <div v-for="card in column3" :key="card.id" class="card">
+            <h3>{{ card.title }}</h3>
+            <p>Описание: {{ card.description }}</p>
+            <p>Дэдлайн: {{ card.deadline }}</p>
+            <p>Последнее редактирование: {{ card.lastEdited }}</p>
+            <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
+                <input type="text" v-model="newTitle" placeholder="Новый заголовок">
+                <input type="text" v-model="newDescription" placeholder="Новое описание">
+                <input type="date" v-model="newDeadline" placeholder="Новый дедлайн">
+                <button type="submit">Редактировать карточку</button>
+            </form>
+            <input type="text" v-model="reasonForReturn" placeholder="Причина возврата">
+            <button @click="moveCardToFourthOrReturn(card, reasonForReturn)">Вернуть</button>
+            <button @click="moveCardToFourthOrReturn(card)">Переместить в выполненные</button>
         </div>
     </div>
+
     <div class="column">
         <h2>Выполненные задачи</h2>
+        <div v-for="card in column4" :key="card.id" class="card">
+            <h3>{{ card.title }}</h3>
+            <p>Описание: {{ card.description }}</p>
+            <p>Дэдлайн: {{ card.deadline }}</p>
+            <p>Последнее редактирование: {{ card.lastEdited }}</p>
+            <p v-if="card.isOverdue">Просрочено</p>
+            <p v-else>Выполнено в срок</p>
+        </div>
     </div>
 </div>
 </body>
-</body>
-
 </html>
