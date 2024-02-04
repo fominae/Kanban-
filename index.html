@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Kanban</title>
+    <link rel="stylesheet" href="css/main.css">
+    <script defer src="js/vue.js"></script>
+    <script defer src="js/main.js"></script>
+</head>
+
+<body>
+<body>
+<div id="app">
+    <div class="column">
+        <h2>Запланированные задачи</h2>
+        <form class="form" @submit.prevent="addCard">
+            <label for="card-title">Заголовок:</label>
+            <input id="card-title" type="text" v-model="newCardTitle">
+            <label for="card-description">Описание:</label>
+            <input id="card-description" type="text" v-model="newCardDescription">
+            <label for="card-deadline">Дэдлайн:</label>
+            <input id="card-deadline" type="date" v-model="newCardDeadline">
+            <button class="form-botton" type="submit">Добавить карточку</button>
+        </form>
+        <div v-for="card in column1" :key="card.id" class="card">
+            <h3>{{ card.title }}</h3>
+            <p>Описание: {{ card.description }}</p>
+            <p>Дэдлайн: {{ card.deadline }}</p>
+            <p>Дата создания: {{ card.createdDate }}</p>
+            <p>Последнее редактирование: </p>
+        </div>
+    </div>
+    <div class="column">
+        <h2>Задачи в работе</h2>
+    </div>
+    <div class="column">
+        <h2>Тестирование</h2>
+    </div>
+    <div class="column">
+        <h2>Выполненные задачи</h2>
+    </div>
+</div>
+</body>
+</body>
+
+</html>
