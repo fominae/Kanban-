@@ -9,6 +9,7 @@ new Vue({
             newCardTitle: '',
             newCardDescription: '',
             newCardDeadline: '',
+            reasonForReturn: '',
         }
     },
     methods: {
@@ -39,6 +40,22 @@ new Vue({
         moveToSecondCol(card) {
             this.column1.splice(this.column1.indexOf(card), 1);
             this.column2.push(card);
+        },
+        moveCardToThird(card) {
+            this.column2.splice(this.column2.indexOf(card), 1);
+            this.column3.push(card);
+        },
+        moveCardToFourthOrReturn(card, reason) {
+            this.column3.splice(this.column3.indexOf(card), 1);
+            if (reason) {
+                card.reasonForReturn = reason;
+                this.column2.push(card);
+            } else {
+                if (new Date(card.deadline) < new Date()) {
+                    card.isOverdue = true;
+                }
+                this.column4.push(card);
+            }
         }
     }
 })

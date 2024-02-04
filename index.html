@@ -46,16 +46,36 @@
             <p>{{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
             <p>Последнее редактирование: {{ card.lastEdited }}</p>
+            <div v-if="card.reasonForReturn">
+                <p>Причина возврата: {{ card.reasonForReturn }}</p>
+            </div>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
                 <input type="text" v-model="newTitle" placeholder="Новый заголовок">
                 <input type="text" v-model="newDescription" placeholder="Новое описание">
                 <input type="date" v-model="newDeadline" placeholder="Новый дедлайн">
                 <button type="submit">Редактировать карточку</button>
             </form>
+            <button @click="moveCardToThird(card)">Переместить в тестирование</button>
         </div>
     </div>
     <div class="column">
-        <h2>Тестирование</h2>
+        <div class="column">
+            <h2>Тестирование</h2>
+            <div v-for="card in column3" :key="card.id" class="card">
+                <h3>{{ card.title }}</h3>
+                <p>{{ card.description }}</p>
+                <p>Дэдлайн: {{ card.deadline }}</p>
+                <p>Последнее редактирование: {{ card.lastEdited }}</p>
+                <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
+                    <input type="text" v-model="newTitle" placeholder="Новый заголовок">
+                    <input type="text" v-model="newDescription" placeholder="Новое описание">
+                    <input type="date" v-model="newDeadline" placeholder="Новый дедлайн">
+                    <button type="submit">Редактировать карточку</button>
+                </form>
+                <input type="text" v-model="reasonForReturn" placeholder="Причина возврата">
+                <button @click="moveCardToFourthOrReturn(card, reasonForReturn)">Вернуть</button>
+            </div>
+        </div>
     </div>
     <div class="column">
         <h2>Выполненные задачи</h2>
