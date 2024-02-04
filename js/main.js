@@ -35,6 +35,10 @@ new Vue({
             card.description = newDescription;
             card.deadline = newDeadline;
             card.lastEdited = new Date().toLocaleString();
+        },
+        moveToSecondCol(card) {
+            this.column1.splice(this.column1.indexOf(card), 1);
+            this.column2.push(card);
         }
     }
 })
