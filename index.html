@@ -21,12 +21,25 @@
             <input id="card-description" type="text" v-model="newCardDescription" required>
             <label for="card-deadline">Дэдлайн:</label>
             <input id="card-deadline" type="date" v-model="newCardDeadline" required>
+            <label for="card-employee">Сотрудник:</label>
+            <select id="card-employee" v-model="newCardEmployee" required>
+                <option v-for="employee in employees" :key="employee.id" :value="employee.name">{{ employee.name }}</option>
+            </select>
+            <label for="card-priority">Приоритет:</label>
+            <select id="card-priority" v-model="newCardPriority" required>
+                <option value="">Выберите приоритет</option>
+                <option value="Низкий">Низкий</option>
+                <option value="Средний">Средний</option>
+                <option value="Высокий">Высокий</option>
+            </select>
             <button class="form-botton" type="submit">Добавить карточку</button>
         </form>
-        <div v-for="card in column1" :key="card.id" class="card">
+        <div v-for="card in sortedColumn1" :key="card.id" class="card">
             <h3>{{ card.title }}</h3>
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
+            <p>Сотрудник: {{ card.employee }}</p>
+            <p>Приоритет: {{ card.priority }}</p>
             <p>Дата создания: {{ card.createdDate }}</p>
             <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }} </p>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
@@ -41,10 +54,12 @@
     </div>
     <div class="column">
         <h2>Задачи в работе</h2>
-        <div v-for="card in column2" :key="card.id" class="card">
+        <div v-for="card in sortedColumn2" :key="card.id" class="card">
             <h3>{{ card.title }}</h3>
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
+            <p>Сотрудник: {{ card.employee }}</p>
+            <p>Приоритет: {{ card.priority }}</p>
             <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }}</p>
             <div v-if="card.reasonForReturn">
                 <p>Причина возврата: {{ card.reasonForReturn }}</p>
@@ -60,10 +75,12 @@
     </div>
     <div class="column">
         <h2>Тестирование</h2>
-        <div v-for="card in column3" :key="card.id" class="card">
+        <div v-for="card in sortedColumn3" :key="card.id" class="card">
             <h3>{{ card.title }}</h3>
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
+            <p>Сотрудник: {{ card.employee }}</p>
+            <p>Приоритет: {{ card.priority }}</p>
             <p v-if="card.lastEdited">Последнее редактирование: {{ card.lastEdited }}</p>
             <form @submit.prevent="editCard(card, newTitle, newDescription, newDeadline)">
                 <input type="text" v-model="newTitle" placeholder="Новый заголовок" required>
@@ -79,10 +96,12 @@
 
     <div class="column">
         <h2>Выполненные задачи</h2>
-        <div v-for="card in column4" :key="card.id" class="card">
+        <div v-for="card in sortedColumn4" :key="card.id" class="card">
             <h3>{{ card.title }}</h3>
             <p>Описание: {{ card.description }}</p>
             <p>Дэдлайн: {{ card.deadline }}</p>
+            <p>Сотрудник: {{ card.employee }}</p>
+            <p>Приоритет: {{ card.priority }}</p>
             <p v-if="card.isOverdue">Просрочено</p>
             <p v-else>Выполнено в срок</p>
         </div>
